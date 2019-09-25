@@ -1,0 +1,17 @@
+{
+  "ModuleInfo": {
+    "CompanyName": "DFTAI",
+    "Copyright": "DFTAI 2019",
+    "Author": "Ryan Bartram",
+    "Guid": "13ce897b-934e-43f4-8ce3-77810f4a17a8",
+    "Description": "Helps create change logs for software using git. The implementation follows that standard defined by keepachangelog.com",
+    "tags": [
+      "changelog",
+      "keepachangelog",
+      "git"
+    ]
+  },
+  "StaticResources": [
+    "template.md"
+  ]
+}

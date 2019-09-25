@@ -1,0 +1,20 @@
+resources:
+  repositories:
+    - repository: templates # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema#repository-resource
+      type: github
+      name: rdbartram/PSBuildRelease
+      ref: refs/heads/master
+      endpoint: rdbartram
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
+jobs:
+  - template: Yaml Build Defintions/ModuleTestIncPublish.yml@templates # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema#job-templates
+    parameters:
+      baseRepoId: DFTAI/PSKeepAChangeLog     # ID of the repo targeted by the build definition
+      baseBuildDefinitionId: 10
+      coverageThreshold: 0     # Minimum Pester Coverage
