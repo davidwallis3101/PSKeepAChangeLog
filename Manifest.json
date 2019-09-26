@@ -1,5 +1,6 @@
 {
   "ModuleInfo": {
+    "Name": "PSKeepAChangeLog",
     "CompanyName": "DFTAI",
     "Copyright": "DFTAI 2019",
     "Author": "Ryan Bartram",
@@ -8,7 +9,9 @@
     "tags": [
       "changelog",
       "keepachangelog",
-      "git"
+      "git",
+      "PSEdition_Desktop",
+      "PSEdition_Core"
     ]
   },
   "StaticResources": [

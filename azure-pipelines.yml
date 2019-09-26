@@ -1,10 +1,13 @@
+variables:
+- group: PowerShell Gallery
+
 resources:
   repositories:
     - repository: templates # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema#repository-resource
       type: github
       name: rdbartram/PSBuildRelease
       ref: refs/heads/master
-      endpoint: rdbartram
+      endpoint: GithubPipelines
 
 trigger:
   batch: true
@@ -18,3 +21,6 @@ jobs:
       baseRepoId: DFTAI/PSKeepAChangeLog     # ID of the repo targeted by the build definition
       baseBuildDefinitionId: 10
       coverageThreshold: 0     # Minimum Pester Coverage
+      galleryAPIKey: $(variables['ApiKey'])
+      moduleName: PSKeepAChangeLog
+      agent: vs2017-win2016

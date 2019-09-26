@@ -22,12 +22,12 @@ function Get-ChangeLogCommitInfo {
                 $searchUntil = ""
             }
 
-            $commits = Get-SerializedCommits -Filter "$tag$searchUntil"
+            $commits = Get-SerializedCommits -Filter "refs/tags/$tag$searchUntil"
 
             if ($searchUntil -eq "..HEAD") {
                 $title = "## [Unreleased]"
             } else {
-                $title = "## [$tags[$currentTagIndex-1]] - $(get-date $commits[0].Date -Format "dd-MM-yyyy")"
+                $title = "## [$($tags[$currentTagIndex-1])] - $(get-date $commits[0].Date -Format "dd-MM-yyyy")"
             }
 
             $Output += $title
@@ -37,7 +37,9 @@ function Get-ChangeLogCommitInfo {
             }
 
             $Output += ""
-            $searchUntil = "refs/tags/$tag"
+            $searchUntil = "..refs/tags/$tag"
         }
+
+        return $Output -join [System.Environment]::NewLine
     }
 }
