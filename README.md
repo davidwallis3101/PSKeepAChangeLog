@@ -41,6 +41,16 @@ Install-Module -Name PSKeepAChangeLog -Scope CurrentUser -Force
 
 I know that the keepachangelog guys say not to just dump your git log into your change log. However, I am a fan of automation and standardisation. If you can work to standardise your commit messages, then I can help you standardise your changelog. I think thats a pretty good deal.
 
+```powershell
+New-ChangeLog -Path CHANGELOG.md
+```
+
+if your tags are not simply numbers or start with v i.e. v1.0, then you can use the TagSortPattern to filter you semantic version strings. The following would support tags such as v-1.0
+
+```powershell
+New-ChangeLog -Path CHANGELOG.md -TagSortPattern "[Vv]-"
+```
+
 
 ## Further reading
 
