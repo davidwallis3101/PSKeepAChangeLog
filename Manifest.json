@@ -12,7 +12,8 @@
       "git",
       "PSEdition_Desktop",
       "PSEdition_Core"
-    ]
+    ],
+    "RequireLicenseAcceptance": false
   },
   "StaticResources": [
     "template.md"

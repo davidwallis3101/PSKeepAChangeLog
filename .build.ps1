@@ -28,6 +28,14 @@ Param (
     $GalleryProxy,
 
     [Parameter()]
+    [string]
+    $PublishGallery,
+
+    [Parameter()]
+    [string]
+    $PublishKey,
+
+    [Parameter()]
     [switch]
     $ResolveDependency
 )
@@ -59,8 +67,10 @@ begin {
     }
 
     if (![io.path]::IsPathRooted($BuildOutput)) {
-        $BuildOutput = Join-Path -Path $ProjectRoot -ChildPath $BuildOutput
+        $BuildOutput = Join-Path -Path $ProjectRoot -ChildPath (Join-Path $BuildOutput $ProjectName)
     }
+
+    New-Item $BuildOutput -Force -ItemType Directory | Out-Null
 
     function Resolve-Dependency {
         [CmdletBinding()]
@@ -130,6 +140,7 @@ process {
         $PSBoundParameters.Remove("ResolveDependency") | Out-Null
         $PSBoundParameters["ProjectName"] = $ProjectName
         $PSBoundParameters["ProjectPath"] = $ProjectPath
+        $PSBoundParameters["BuildOutput"] = $BuildOutput
 
         Invoke-Build $Tasks $MyInvocation.MyCommand.Path @PSBoundParameters
         return
